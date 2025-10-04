@@ -1,2 +1,3 @@
 # Arquivo para a funcionalidade de 'cadastrar'
-# Módulo: clientes
+k = input("Digite o nome do cliente: ")
+print(f"Cliente {k} cadastrado com sucesso!")
