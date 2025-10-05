@@ -1,2 +1,5 @@
-# Arquivo para a funcionalidade de 'deletar'
-# Módulo: clientes
+import sys
+sys.path.append('..')
+from dados import db
+
+print("\n--- DELETAR CLIENTE ---")
