@@ -1,28 +1,29 @@
 # banco.py
-# Este é o arquivo principal e o coração do sistema.
-# Ele controla o menu principal, carrega os dados na inicialização e os salva ao sair.
+# Este é o coração do sistema. Ele gerencia o menu principal,
+# carrega os dados ao iniciar e salva ao finalizar.
 
 import os
 import pprint
-import datetime  # Importado para obter a data atual
 import dados
+from datetime import datetime
 
-# --- LÓGICA DE CARREGAMENTO DOS DADOS ---
+# --- LÓGICA DE CARREGAMENTO E SALVAMENTO ---
 try:
+    # Tenta importar os dados salvos do 'banco_de_dados.py'
     from banco_de_dados import db as db_salvo
     dados.db = db_salvo
     print("Dados do banco carregados com sucesso!")
 except ImportError:
+    # Se não encontrar, usa o 'molde' vazio do 'dados.py'
     print("Arquivo 'banco_de_dados.py' não encontrado. Iniciando com base de dados vazia.")
 
-# --- MENSAGEM DE BOAS-VINDAS ---
+# Pega a data atual para exibir no cabeçalho
+data_atual = datetime.now().strftime("%d de %B de %Y")
+
 print("\n======================================")
 print("   BEM-VINDO AO BANCO SENAI")
-# Adiciona a data atual de forma dinâmica
-print(f"   {datetime.date.today().strftime('%d de %B de %Y')}")
+print(f"   Salvador, Bahia - {data_atual}")
 print("======================================")
-print("Em que podemos te ajudar hoje?\n")
-
 
 while True:
     print("""
@@ -30,9 +31,9 @@ while True:
     [1] Clientes
     [2] Contas
     [3] Transações Financeiras
-    [4] Rendimentos
-    [5] Relatórios
-    [6] Ranking do Banco
+    [4] Relatórios
+    [5] Ranking
+    [6] Rendimentos
     [0] Sair do Sistema e Salvar
     """)
     
@@ -52,18 +53,17 @@ while True:
     elif opcao_principal == '6':
         exec(open('rendimentos/menu.py', encoding='utf-8').read())
     elif opcao_principal == '0':
-        # --- LÓGICA DE SALVAMENTO ---
         try:
             with open('banco_de_dados.py', 'w', encoding='utf-8') as f:
-                # Converte o dicionário 'db' para uma string formatada
                 conteudo_formatado = pprint.pformat(dados.db)
-                # Escreve a string no arquivo, no formato de uma variável Python
                 f.write(f"db = {conteudo_formatado}\n")
-            print("\nDados salvos com sucesso!")
+            print("\nDados salvos com sucesso em 'banco_de_dados.py'!")
         except Exception as e:
             print(f"\nOcorreu um erro ao salvar os dados: {e}")
-        break  
+        break
+    else:
         print("\nOpção inválida! Por favor, escolha uma opção do menu.")
     
     input("\nPressione Enter para continuar...")
     os.system('cls' if os.name == 'nt' else 'clear')
+
