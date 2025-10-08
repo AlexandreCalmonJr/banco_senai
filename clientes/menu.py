@@ -5,7 +5,7 @@ while True:
     
     print("""
     --- GESTÃO DE CLIENTES ---
-    [1] Cadastrar Novo Cliente1
+    [1] Cadastrar Novo Cliente
     [2] Listar Clientes
     [3] Editar Cliente
     [4] Deletar Cliente
