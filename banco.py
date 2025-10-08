@@ -1,4 +1,9 @@
+# Menu principal do sistema.
+
 import os
+
+# Carrega os dados (variáveis: clientes, contas, transacoes)
+
 
 print("======================================")
 print("   BEM-VINDO AO BANCO SENAI")
