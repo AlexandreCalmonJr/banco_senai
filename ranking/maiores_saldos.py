@@ -1,4 +1,6 @@
-# Exibir o ranking das contas com os maiores saldos,
+import sys
+sys.path.append('..')
+from dados import db
 
 print("\n=== RANKING: CONTAS COM MAIORES SALDOS ===")
 
@@ -24,13 +26,14 @@ if eh_numero:
 else:
     limite = 5  # valor padrão
 
-# Caso não haja contas cadastradas
-if len(contas) == 0:
+# CORREÇÃO: Acessa a lista de contas a partir do dicionário 'db'
+if len(db['contas']) == 0:
     print("Nenhuma conta encontrada no sistema.")
 else:
     # Cria uma cópia dos IDs das contas para controle
     ids_restantes = []
-    for c in contas:
+    # CORREÇÃO: Acessa a lista de contas a partir do dicionário 'db'
+    for c in db['contas']:
         ids_restantes.append(c["id_conta"])
 
     posicao = 1  # contador de posição no ranking
@@ -43,7 +46,8 @@ else:
 
         # Percorre as contas restantes para encontrar a de maior saldo
         for id_conta in ids_restantes:
-            for c in contas:
+            # CORREÇÃO: Acessa a lista de contas a partir do dicionário 'db'
+            for c in db['contas']:
                 if c["id_conta"] == id_conta:
                     saldo_atual = c["saldo"]
 
@@ -58,12 +62,14 @@ else:
             # Busca os dados da conta e do cliente dono dela
             nome_cliente = "Desconhecido"
             tipo_conta = ""
-            for conta in contas:
+            # CORREÇÃO: Acessa a lista de contas a partir do dicionário 'db'
+            for conta in db['contas']:
                 if conta["id_conta"] == maior_id:
                     tipo_conta = conta["tipo_conta"]
                     id_cliente = conta["id_cliente"]
                     # Procura o cliente correspondente
-                    for cli in clientes:
+                    # CORREÇÃO: Acessa a lista de clientes a partir do dicionário 'db'
+                    for cli in db['clientes']:
                         if cli["id_cliente"] == id_cliente:
                             nome_cliente = cli["nome_cliente"]
                             break
