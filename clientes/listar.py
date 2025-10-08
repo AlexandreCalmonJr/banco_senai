@@ -1,2 +1,2 @@
-# Arquivo para a funcionalidade de 'listar'
-# Módulo: clientes
+import os
+# Mostra todos os clientes cadastrados
