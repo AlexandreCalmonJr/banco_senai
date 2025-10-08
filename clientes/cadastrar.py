@@ -10,7 +10,7 @@ idade_cliente = int(input("Digite sua idade: "))
 cpf_cliente = int(input("Digite seu CPF: "))
 
 # Pega o ID atual para este cliente
-novo_id = db['proximo_id_cliente']
+novo_id = (db['proximo_id_cliente'])
 
 while True:
     tipo_cliente = input("É Pessoa Física ou Jurídica? (F para Física / J para Jurídica): ").upper()
